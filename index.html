@@ -14,7 +14,8 @@
         $body.append(button);
         var index = streams.home.length - 1;
         var currentIndex = index+1;
-
+        var $tweetBox = $('<div class=tweetBox></div>');
+        $tweetBox.appendTo($body);
         var tweetFunction = function(index){
           var tweet = streams.home[index];
           var user = tweet.user;
@@ -28,13 +29,13 @@
           return tweetMessage;
         }
         while(index >= 0){
-          tweetFunction(index).appendTo($body);
+          tweetFunction(index).appendTo($tweetBox);
           index -= 1;
         }
         $('button').on("click", function(){
           var latestIndex = streams.home.length-1;
           for(var i = currentIndex;i<=latestIndex;i++){
-            tweetFunction(i).prependTo($body);
+            tweetFunction(i).prependTo($tweetBox);
           }
           currentIndex=latestIndex+1;
         })
