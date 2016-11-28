@@ -3,25 +3,44 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css"/>
   </head>
   <body>
+    <h1> Twittler</h1>
+    <button type = "newTweets">Load new tweets</button>
     <script>
-
       $(document).ready(function(){
         var $body = $('body');
-        $body.html('');
-
+        $body.html('<h1>Twittler</h1>');
         var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
           var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
+          var user = tweet.user;
+          //var $user = $('user').text(user);
+          //console.log($user);
+          var message = ': '+tweet.message;
+          //var $message = $('div class = "message"></div>');
+          //$message.text(message);
+          var tweetTime = tweet.created_at.getHours()+':'+tweet.created_at.getMinutes()+':'+tweet.created_at.getMilliseconds();
+          //var $tweetTime = $('div class = "tweetTime"></div>');
+          //$tweetTime.text(tweetTime);
+          $tweet.text('@' + user + message+ ' '+tweetTime);
           $tweet.appendTo($body);
+          
           index -= 1;
         }
-
+        /*
+        $($body).hover(function(){
+          $(this).css("color", "blue");
+        }, function(){
+          $(this).css("color", "black");
+        });*/
       });
 
+
+
     </script>
+
   </body>
 </html>
