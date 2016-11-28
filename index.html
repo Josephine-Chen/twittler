@@ -10,6 +10,8 @@
       $(document).ready(function(){
         var $body = $('body');
         $body.html('<h1>Twittler</h1>');
+        var button = '<button type = "newTweets">Load new tweets</button>';
+        $body.append(button);
         var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
@@ -27,14 +29,14 @@
           var newtext = $tweet.append($user).append(message).append($tweetTime);
           //$tweet.appendTo($body);
           newtext.appendTo($body);
+          
           index -= 1;
         }
-
       });
 
 
 
     </script>
-  <button type = "newTweets">Load new tweets</button>
+  
   </body>
 </html>
