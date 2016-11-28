@@ -7,12 +7,16 @@
   </head>
   <body>
     <script>
+    //TODO: Add new tweets.
+    //TODO: Make new html of user feed
       $(document).ready(function(){
         var $body = $('body');
         $body.html('<h1>Twittler</h1>');
         var button = '<button type = newTweets>Load new tweets</button>';
         $body.append(button);
         var index = streams.home.length - 1;
+        var currentIndex = index+1;
+
         while(index >= 0){
           var tweet = streams.home[index];
           var user = tweet.user;
@@ -27,6 +31,23 @@
           tweetMessage.appendTo($body);
           index -= 1;
         }
+        $('button').on("click", function(){
+          var latestIndex = streams.home.length-1;
+          for(var i = currentIndex;i<=latestIndex;i++){
+            var tweet = streams.home[i];
+            var user = tweet.user;
+            var message = ': '+tweet.message;
+            var tweetTime = tweet.created_at.getHours()+':'+tweet.created_at.getMinutes()+':'+tweet.created_at.getMilliseconds();
+            //Remove milliseconds later
+            var $tweet = $('<div class=tweet></div>');
+            var $user = '<a class = user href="'+'#'+'">'+user+'</a>';
+            var $tweetTime = '<span class=tweetTime>'+tweetTime+'</span>';
+            
+            var tweetMessage = $tweet.append($user).append(message).append($tweetTime);
+            tweetMessage.prependTo($body);
+          }
+          currentIndex=latestIndex+1;
+        })
       });
 
 
