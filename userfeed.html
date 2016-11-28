@@ -9,35 +9,26 @@
     <script>
       $(document).ready(function(){
         var $body = $('body');
+        $body.html('<h1>User Feed</h1>');
         $body.html('<h1>Twittler</h1>');
-        var button = '<button type = newTweets>Load new tweets</button>';
+        var button = '<button type = backButton>Back to Feed</button>';
         $body.append(button);
-        var index = streams.home.length - 1;
-        var currentIndex = index+1;
-
-        var tweetFunction = function(index){
-          var tweet = streams.home[index];
+        var index = streams.users.shawndrost.length-1;
+        while(index>=0){
+          var tweet = streams.users.shawndrost[index];
           var user = tweet.user;
           var message = ': '+tweet.message;
           var tweetTime = tweet.created_at.getHours()+':'+tweet.created_at.getMinutes();
           var $tweet = $('<div class=tweet></div>');
-          var $user = '<a class = user href="'+'userfeed.html'+'">'+user+'</a>';
+          var $user = '<a class = user href="'+'#'+'">'+user+'</a>';
           var $tweetTime = '<span class=tweetTime>'+tweetTime+'</span>';
           
           var tweetMessage = $tweet.append($user).append(message).append($tweetTime);
-          return tweetMessage;
+          tweetMessage.appendTo($body);
+          index-=1;
         }
-        while(index >= 0){
-          tweetFunction(index).appendTo($body);
-          index -= 1;
-        }
-        $('button').on("click", function(){
-          var latestIndex = streams.home.length-1;
-          for(var i = currentIndex;i<=latestIndex;i++){
-            tweetFunction(i).prependTo($body);
-          }
-          currentIndex=latestIndex+1;
-        })
+        $('button').click(function() {window.location.href = 'index.html';
+        });
       });
 
     </script>
