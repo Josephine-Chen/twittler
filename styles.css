@@ -12,3 +12,7 @@ div{
 	border-color: rgb(135, 199, 199);
 	padding:5px;
 }
+.tweetTime{
+	float:right;
+	font-size: small;
+}
