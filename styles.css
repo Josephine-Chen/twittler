@@ -22,7 +22,11 @@ h1{
 }
 button{
 	font-size: large;
+	margin-left:55px;
 }
 .user{
 	font-size:large;
+}
+.tweetBox{
+	margin: 0px 50px;
 }

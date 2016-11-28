@@ -16,6 +16,7 @@
         var currentIndex = index+1;
         var $tweetBox = $('<div class=tweetBox></div>');
         $tweetBox.appendTo($body);
+        //tweetFunction takes in index and outputs user, message, and time
         var tweetFunction = function(index){
           var tweet = streams.home[index];
           var user = tweet.user;
@@ -32,6 +33,7 @@
           tweetFunction(index).appendTo($tweetBox);
           index -= 1;
         }
+        //When button is clicked, update new tweets
         $('button').on("click", function(){
           var latestIndex = streams.home.length-1;
           for(var i = currentIndex;i<=latestIndex;i++){

@@ -8,23 +8,25 @@
   <body>
     <script>
       $(document).ready(function(){
+        //figure out current user based on substring after the hash
         var currentUser=window.location.hash.substring(1);
         var $body = $('body');
         $body.html('<h1>User Feed of '+currentUser+'</h1>');
         var button = '<button type = backButton>Back to Main Feed</button>';
         $body.append(button);
+        var $tweetBox = $('<div class=tweetBox></div>');
+        $tweetBox.appendTo($body);
+        //only load the current user's tweets
         var index = streams.users[currentUser].length-1;
         while(index>=0){
           var tweet = streams.users[currentUser][index];
-          var user = tweet.user;
           var message = ': '+tweet.message;
           var tweetTime = tweet.created_at.getHours()+':'+tweet.created_at.getMinutes();
           var $tweet = $('<div class=tweet></div>');
-          var $user = '<a class = user href="'+'#'+'">'+user+'</a>';
           var $tweetTime = '<span class=tweetTime>'+tweetTime+'</span>';
           
-          var tweetMessage = $tweet.append(user).append(message).append($tweetTime);
-          tweetMessage.appendTo($body);
+          var tweetMessage = $tweet.append(currentUser).append(message).append($tweetTime);
+          tweetMessage.appendTo($tweetBox);
           index-=1;
         }
         $('button').click(function() {window.location.href = 'index.html';
